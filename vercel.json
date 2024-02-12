@@ -2,5 +2,6 @@
   "rewrites": [
     { "source": "/", "destination": "/splash.html" },
     { "source": "/home", "destination": "/main.html" }
-  ]
+  ],
+  "cleanUrls": true
 }
