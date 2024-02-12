@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png"  href="/assets/Nuatlogo.svg">
 </head>
 <body style="background-color: #F3EFEC;">
-    <nav class="navbar d-flex fixed-top" style="background-color: #C8C4BF;"  >
+    <nav class="navbar d-flex d-none d-lg-block fixed-top" style="background-color: #C8C4BF;"  >
         <div class="container-fluid d-flex justify-content-between" >
             <div>
                 <a class="navbar-brand" href="/splash.html">
@@ -33,6 +33,28 @@
             </div>
         </div>
     </nav>
+
+    <!-- <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #C8C4BF;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/splash.html">
+                <img src="./assets/navlogo.svg" alt="logo" style="width:150px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="#landing-section">About</a>
+                    <a class="nav-link" href="#services-section">Service</a>
+                    <a class="nav-link" href="#pricelist-section">Pricelist</a>
+                    <a class="nav-link" href="#location-section">Location</a>
+                </div>
+            </div>
+        </div>
+    </nav> -->
+    
+    
+    
 
     <!-- Land Dekstop -->
     <section id="landing-section" class="d-none d-lg-block" style="position: relative; margin-top:80px">
@@ -79,19 +101,15 @@
 
     <!-- Land Mobile -->
     <section id="landing-section" class=" d-block d-lg-none" style="position: relative; margin-top:80px">
-        <!-- Centered content for text and logo -->
         <div class="container" style="z-index: 2; position: relative;">
             <div class="row justify-content-center">
-                <!-- Make column full width on small screens and center text -->
-                <div class="col-12 col-md-4 text-center" data-aos="fade-right" >
-                    <img src="./assets/Nuatlogo.svg" alt="nuattimelog" class="img-fluid" style="max-width: 550px; margin-top:50px;">
+                <div class="col-12  text-center" data-aos="fade-right" >
+                    <img src="./assets/Nuatlogo.svg" alt="nuattimelog" class="img-fluid" style="max-width: 350px; margin-top:50px;">
                     <p style="margin-top:50px; font-size: 25px;">
                         Welcome to the serene world of Thai Reflexology, an practice that harmonizes the body's energy flow and promotes deep relaxation
                     </p>
-                    <!-- Philosophy title text should also be centered on mobile -->
                     <div class="text-center" style="font-size: 40px; font-family:'Inria-Serif',serif; padding-top: 70px;">Our filosofy</div>
-                    <!-- Ensure the inner column is full width on small screens -->
-                    <div class="col-12 col-md-4">
+                    <div class="col-12">
                         <div style="text-align: center; margin-top: 60px;">
                             <img src="./assets/logo (3).svg" alt="nuattimelog" style="width: 120px;">
                             <p>Royal Orchid</p>
@@ -108,7 +126,7 @@
             </div>
         </div>
         <div style="height:200px;"></div>
-    </section>
+    </section> 
 
     <!-- service Dekstop -->
     <section id="services-section" class="d-none d-lg-block">
@@ -173,14 +191,15 @@
     </section>
 
 
-    <section id="pricelist-section">
+    <!-- dekstop pricelist -->
+    <section id="pricelist-section" class="d-none d-lg-block">
         <div class="container ">
             <div data-aos="fade-up" class="row justify-content-center p-4" style="font-size: 40px;font-family:'Inria-Serif',serif">Pricelist</div>
-            <div  data-aos="flip-up" class="row justify-content-center">
+            <div  data-aos="flip-up" class="p-4 row justify-content-center">
                 <img src="./assets/fullbody.svg" alt="servicess" style="width:450px">
                 <img src="./assets/thaimassage.svg" alt="servicess" style="width:450px">
             </div>
-            <div  data-aos="flip-up" class="row justify-content-center">
+            <div  data-aos="flip-up" class="p-4 row justify-content-center">
                 <img src="./assets/oilmassage.svg" alt="servicess" style="width:450px">
                 <img src="./assets/other.svg" alt="servicess" style="width:450px">
             </div>
@@ -188,13 +207,61 @@
         <div style="height:100px"></div>
     </section>
 
-    <section id="promotion-section" style="position: relative; padding-top: 50px;">
+    <!-- mobile pricelist -->
+    <section id="pricelist-section" class="d-block d-lg-none">
+        <div class="container ">
+            <div data-aos="fade-up" class="row justify-content-center" style="font-size: 30px;font-family:'Inria-Serif',serif">Pricelist</div>
+            <div  data-aos="flip-up" class="row justify-content-center">
+                <img src="./assets/fullbody.svg" alt="servicess" style="width:300px">
+                <img src="./assets/thaimassage.svg" alt="servicess" style="width:300px">
+            </div>
+            <div  data-aos="flip-up" class="row justify-content-center">
+                <img src="./assets/oilmassage.svg" alt="servicess" style="width:300px">
+                <img src="./assets/other.svg" alt="servicess" style="width:300px">
+            </div>
+        </div>
+        <div style="height:100px"></div>
+    </section>
+
+    <!-- Dekstop promotion -->
+    <section id="promotion-section" class="d-none d-lg-block" style="position: relative;">
+        <!-- Full-width container for the Promotion image to stick to the left -->
+        <div class="container-fluid" style="z-index: 1; position: absolute; top: 0; left: 0; height: 100%;">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Left side content: Promotion image -->
+                    <img src="./assets/promotion.svg" alt="promo" style="height: 600px; max-width: 100%; width: auto;">
+                </div>
+            </div>
+        </div>
+    
+        <!-- Centered content for text -->
+        <div class="container" style="z-index: 2; position: relative;">
+            <div class="row">
+                <div class="col-6 offset-4" style="padding-top: 50px;">
+                    <div style="font-size: 40px;font-family:'Inria-Serif',serif" data-aos="fade-left" >Promotion</div>
+                    <div class="mt-5" style="font-size: larger;" data-aos="fade-left">
+                        Unlock the Ultimate Comfort in Wellness with Our Exclusive Reflexology Deal! Elevate your relaxation experience and immerse yourself in unparalleled comfort that rejuvenates your mind, body, and soul. Don't miss this limited-time offer to enrich your reflexology journey with us
+                    </div>
+                    <div class="mt-5">
+                        <div class="p-3 text-center" style="background-color: #AB875F; border-radius: 50px; color:white">
+                            Click here
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="height:100px"></div>
+    </section> 
+
+    <!-- mobile promotion -->
+     <section id="promotion-section" class="d-block d-lg-none" style="position: relative; padding-top: 50px;">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-6 order-2 order-lg-1">
-                    <img src="./assets/promotion.svg" alt="promo" class="img-fluid" style="height: auto; max-width: 100%; width: auto;">
+                <div class="col-lg-6 order-2">
+                    <img src="./assets/promotion.svg" alt="promo" class="img-fluid" style="width: auto;">
                 </div>
-                <div class="col-lg-6 order-1 order-lg-2" style="padding-top: 50px;" data-aos="fade-left">
+                <div class="col-lg-6 order-1" style="padding-top: 50px;" data-aos="fade-left">
                     <div style="font-size: 40px;font-family:'Inria-Serif',serif">Promotion</div>
                     <div class="mt-5" style="font-size: larger;">
                         Unlock the Ultimate Comfort in Wellness with Our Exclusive Reflexology Deal! Elevate your relaxation experience and immerse yourself in unparalleled comfort that rejuvenates your mind, body, and soul. Don't miss this limited-time offer to enrich your reflexology journey with us.
@@ -208,19 +275,28 @@
             </div>
         </div>
         <div style="height:100px;"></div>
-    </section>
-    
+    </section> 
 
     <!-- Location Desktop -->
-    <section id="location-section" style="position: relative;">
+    <section id="location-section" class="d-none d-lg-block" style="position: relative;">
+        <!-- Full-width container for the Location image to stick to the right -->
+        <div class="container-fluid" style="z-index: 1; position: absolute; top: 0; right: 0; height: 100%;">
+            <div class="row">
+                <div class="col-12 text-end">
+                    <!-- Right side content: Location image -->
+                    <img src="./assets/location.svg" alt="locations" style="height: 800px; max-width: 100%; width: auto;">
+                </div>
+            </div>
+        </div>
+    
+        <!-- Centered content for text -->
         <div class="container" style="z-index: 2; position: relative; margin-top: 100px;">
             <div class="row">
-                <div class="col-12 col-lg-6" style="padding-top:150px" data-aos="fade-right">
-                    <div style="font-size: 40px; font-family:'Inria-Serif',serif">Location</div>
-                    <div style="font-size:25px; padding-top:50px">
-                        Golf Island, Jl. Pantai Indah Kapuk Ruko No.109 Blok E, Jakarta, Daerah Khusus Ibukota Jakarta 14460
-                    </div>
-                    <div>
+                <div class="col-6 offset-1" style="padding-top:150px" data-aos="fade-right">
+                    <div  data-aos="fade-right" style="font-size: 40px; font-family:'Inria-Serif',serif">Location</div>
+                    <!-- Left side content: Location text -->
+                    <div  data-aos="fade-right" style="font-size:25px; padding-top:50px">Golf Island, Jl. Pantai Indah Kapuk Ruko No.109 Blok E, jakarta, Daerah Khusus Ibukota Jakarta 14460</div>
+                    <div data-aos="fade-right">
                         <p style="font-size:25px;">Everyday</p>
                         <p style="font-size:25px;">Opens : 09:00 AM</p>
                         <p style="font-size:25px;">Close : 21.00 PM</p>
@@ -233,21 +309,45 @@
                         </div>
                     </div>
                 </div>
+                <!-- Empty column to provide space for the absolutely positioned image -->
+                <div class="col-6"></div>
             </div>
         </div>
-        <div class="container-fluid" style="z-index: 1;">
-            <div class="row">
-                <div class="col-12 col-lg-6 order-lg-2 text-lg-end">
-                    <img src="./assets/location.svg" alt="locations" class="img-fluid" style="height: auto; max-height: 800px; width: 100%;">
+        <div style="height:500px"></div>
+    </section> 
+    
+
+    <!-- Mobile Location -->
+    <section id="location-section" class="d-block d-lg-none" style="position: relative; margin-top: 100px;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 order-lg-1" style="padding-top: 150px; padding-bottom: 50px;" data-aos="fade-right">
+                    <div style="font-size: 40px; font-family:'Inria-Serif',serif">Location</div>
+                    <div style="font-size:25px; padding-top:50px">Golf Island, Jl. Pantai Indah Kapuk Ruko No.109 Blok E, Jakarta, Daerah Khusus Ibukota Jakarta 14460</div>
+                    <div>
+                        <p style="font-size:25px;">Everyday</p>
+                        <p style="font-size:25px;">Opens : 09:00 AM</p>
+                        <p style="font-size:25px;">Close : 21.00 PM</p>
+                        <div class="mt-5">
+                            <a href="https://maps.app.goo.gl/HDFvqCjEjEKQF6EN8" class="text-decoration-none">
+                                <div class="p-3 text-center" style="background-color: #AB875F; border-radius: 50px; max-width: 270px; color:white">
+                                    Open map
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-lg-end order-lg-2 mb-4 mb-lg-0">
+                    <img src="./assets/location.svg" alt="locations" class="img-fluid" style="max-height: 800px; width: auto;">
                 </div>
             </div>
         </div>
-        <div style="height:500px;"></div>
+        <div style="height:100px"></div>
     </section>
     
 
     
-      <div class="wrapper d-none d-lg-block">
+      <div class="wrapper d-none d-lg-flex">
         <div class="container1">
             <input type="radio" name="slide" id="c1" checked>
             <label for="c1" class="card">
@@ -292,52 +392,36 @@
         </div>
     </div>
 
-    <footer style="color:white;">
-        <div style="background-color: #613E2C;height:500px">
-            <div class="container p-5">
-                <div class="row">
-                    <div class="col-6">
-                        <div style="color:white; padding-top:50px;font-weight: bold;font-size:20px;">
-                            Contact Number
-                        </div>
-                        <div style="color:white;padding-top:20px;font-size:20px;">
-                            <img src="./assets/logo/WA.png">
-                            0851-8688-8510
-                        </div>
-                        <div style="color:white; padding-top:50px;font-weight: bold;font-size:20px;">
-                            Checkout our Social Media
-                        </div>
-                        <div style="color:white;padding-top:20px;font-size:20px;">
-                            <img src="./assets/logo/ig.png">
-                            nuattime
-                        </div>
-                        <div style="color:white;padding-top:20px;font-size:20px;">
-                            <img src="./assets/logo/tt.png">
-                            nuattime
-                        </div>
-                        <div style="color:white;padding-top:20px;font-size:20px;">
-                            <img src="./assets/logo/fb.png">
-                            Nuat Time
-                        </div>
+    <footer style="color:white; background-color: #613E2C;">
+        <div class="container p-5">
+            <div class="row">
+                <div class="col-12">
+                    <div style="color:white; padding-top:50px;font-weight: bold;font-size:20px;">
+                        Contact Number
                     </div>
-                    <div class="col-6">
-                        <div style="color:white; padding-top:50px">Ruko Golf Island blok E 109-111 Pantai Indah Kapuk - Jakarta Utara</div>
-                        <div style="padding-top:50px;" class="d-block">
-                            <div class="animate-underline" style="padding-top:20px;">
-                                <a href="#landing-section" style="color:white; text-decoration: none;">About</a> 
-                            </div>
-                            <div class="animate-underline" style="padding-top:20px;">
-                                <a href="#services-section" style="color:white; text-decoration: none;">Service</a>
-                            </div>
-                            <div class="animate-underline" style="padding-top:20px;">
-                                <a href="#pricelist-section" style="color:white; text-decoration: none;">Pricelist</a>
-                            </div>
-                            <div class="animate-underline" style="padding-top:20px;">
-                                <a href="#location-section" style="color:white; text-decoration: none;">Promotion</a>
-                            </div> 
-                        </div>
-                    </div>                    
+                    <div style="color:white;padding-top:20px;font-size:20px;">
+                        <img src="./assets/logo/WA.png">
+                        0851-8688-8510
+                    </div>
+                    <div style="color:white; padding-top:50px;font-weight: bold;font-size:20px;">
+                        Checkout our Social Media
+                    </div>
+                    <div style="color:white;padding-top:20px;font-size:20px;">
+                        <img src="./assets/logo/ig.png">
+                        nuattime
+                    </div>
+                    <div style="color:white;padding-top:20px;font-size:20px;">
+                        <img src="./assets/logo/tt.png">
+                        nuattime
+                    </div>
+                    <div style="color:white;padding-top:20px;font-size:20px;">
+                        <img src="./assets/logo/fb.png">
+                        Nuat Time
+                    </div>
                 </div>
+                <div class="col-12">
+                    <div style="color:white; padding-top:50px">Ruko Golf Island blok E 109-111 Pantai Indah Kapuk - Jakarta Utara</div>
+                </div>                    
             </div>
         </div>
     </footer>
