@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Splash Screen</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body, html {
+            height: 100%;
+        }
+        .bg-cover {
+            background-size: cover !important;
+        }
+        .splash-screen {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('your-image.jpg') no-repeat center center;
+            background-size: cover;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .fade-in {
+            animation: fadeIn 2s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+<div class="splash-screen" style="background-color: #F3EFEC;">
+    <div>
+        <img src="./assets/Nuatlogo.svg" alt="" class="fade-in">
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        setTimeout(function() {
+            window.location.href = "main.html";
+        }, 3000); // 3000 milliseconds = 3 seconds
+    });
+</script>
+</body>
+</html>
