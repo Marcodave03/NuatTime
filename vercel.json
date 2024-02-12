@@ -3,5 +3,9 @@
     { "source": "/", "destination": "/splash.html" },
     { "source": "/home", "destination": "/main.html" }
   ],
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/$1.html", "continue": true }
+  ],
   "cleanUrls": true
 }
