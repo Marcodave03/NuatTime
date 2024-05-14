@@ -206,6 +206,16 @@ input:checked + label .description {
     display: none;
   }
 
+.zoom-effect img,
+.zoom-effect p {
+    transition: transform 0.5s ease-in-out;
+}
+
+.zoom-effect:hover img,
+.zoom-effect:hover p {
+    transform: scale(2);
+}
+
 
 
 
