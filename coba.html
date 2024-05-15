@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Doors</title>
+    <style>
+        .door-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .door-wrapper {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .door {
+            overflow: hidden;
+            position: relative;
+            flex-shrink: 0;
+            width: 50vw;
+            height: 100%;
+        }
+
+        .door img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .left-door {
+            transform: translateX(0); /* Set pintu awal tertutup saat awal */
+
+        }
+
+        .right-door {
+            transform: translateX(0); /* Set pintu awal tertutup saat awal */
+           
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 200%; /* Atur tinggi konten agar cukup panjang untuk discroll */
+            background-color: #F3EFEC;
+            opacity: 0; /* Awalnya atur opasitas ke 0 */
+            transition: opacity 1s ease-in-out; /* Animasi opasitas */
+        }
+
+        .content.show {
+            opacity: 1; /* Atur opasitas ke 1 saat konten ditampilkan */
+        }
+
+        @media only screen and (max-width: 768px) {
+            .door-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .door {
+                width: 100%;
+                height: 50vh;
+            }
+
+            .content {
+                padding-top: 50vh;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="door-container d-none d-lg-block">
+        <div class="door-wrapper">
+            <div class="door left-door">
+                <img src="./assets/Door/door1.svg" alt="Left Door">
+            </div>
+            <div class="door right-door">
+                <img src="./assets/Door/door2.svg" alt="Right Door">
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var windowHeight = $(window).height();
+            var contentHeight = $('.content').outerHeight();
+            var doorsAnimated = false;
+            var doorsFullyOpened = false;
+            function animateDoors() {
+                var scrollTop = $(window).scrollTop();
+                var scrollPercent = (scrollTop / (contentHeight - windowHeight)) * 100;
+                var leftDoorShift = -Math.min(scrollPercent, 400); 
+                var rightDoorShift = Math.min(scrollPercent, 400); 
+                if (!doorsAnimated) {
+                    $('.right-door').css('transform', 'translateX(' + leftDoorShift + 'vw)');
+                    $('.left-door').css('transform', 'translateX(' + rightDoorShift + 'vw)');
+                    if (scrollPercent >= 100) {
+                        doorsAnimated = true;
+                    }
+                }
+                if (doorsAnimated && !doorsFullyOpened && scrollPercent >= 100) {
+                    doorsFullyOpened = true;
+                    $('.content').addClass('show'); 
+                    $('body').css('overflow', 'auto'); 
+                }
+            }
+            $(window).on('load scroll', function() {
+                requestAnimationFrame(animateDoors);
+            });
+        });
+    </script>
+    
+</body>
+</html>

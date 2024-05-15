@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <title>Splash Screen</title>
-    <link rel="icon" type="image/png"  href="/assets/NuatTime.png">
+    <link rel="icon" type="image/png" href="/assets/NuatTime.png">
     <style>
         body, html {
             height: 100%;
+            margin: 0;
+            overflow: hidden;
         }
         .bg-cover {
             background-size: cover !important;
@@ -32,22 +34,32 @@
 </head>
 <body>
 
-    <div class="splash-screen d-flex justify-content-center align-items-center" style="background-color: #F3EFEC; height: 100vh;">
+    <div id="splash-screen" class="splash-screen" style="background-color: #F3EFEC;">
         <div>
-            <img src="./assets/Nuatlogo.svg" alt="" class="fade-in img-fluid">
+            <img src="./assets/Nuatlogo.svg" alt="Logo" class="fade-in img-fluid">
         </div>
     </div>
-    
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script>
-    $(document).ready(function() {
-        setTimeout(function() {
-            window.location.href = "main.html";
-        }, 3000); // 3000 milliseconds = 3 seconds
-    });
-</script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: 'main.html',
+                success: function(data) {
+                    var iframe = $('<iframe>', {
+                        srcdoc: data,
+                        style: 'display: none;'
+                    }).appendTo('body');
+                    iframe.on('load', function() {
+                        setTimeout(function() {
+                            window.location.href = "main.html";
+                        }, 2000); 
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>

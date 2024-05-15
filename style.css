@@ -11,9 +11,9 @@ body {
     background-image: url('./assets/background.svg');
     background-position: top center;
     background-repeat: no-repeat;
-    background-size: cover; /* Adjust as necessary */
-}
-
+    background-size: cover; 
+    overflow-x: hidden;
+} 
 
 nav div{ 
     display: flex;
@@ -21,36 +21,32 @@ nav div{
 }
 
 .navbar.fixed-top {
-    background-color: #C8C4BF; /* Your initial color */
-    transition: background-color 0.3s; /* Smooth transition for background color */
+    background-color: #C8C4BF;
+    transition: background-color 0.3s; 
 }
-
-/* .navbar.transparent {
-    background-color: rgba(200, 196, 191, 0.6) !important; 
-} */
 
 .animated-underline {
     position: relative;
     display: inline-block;
-    padding-bottom: 3px; /* Adjust as needed */
-    overflow: hidden; /* Ensures the pseudo-element does not affect the box size */
-    text-decoration: none; /* Removes the default underline */
+    padding-bottom: 3px; 
+    overflow: hidden;
+    text-decoration: none;
 }
 
 .animated-underline::after {
     content: '';
     display: block;
     width: 0;
-    height: 2px; /* Adjust the thickness of the underline */
-    background: currentColor; /* Matches the color of the text */
-    transition: width .3s ease; /* Adjusts the speed of the animation */
+    height: 2px; 
+    background: currentColor; 
+    transition: width .3s ease; 
     position: absolute;
     bottom: 0;
     left: 0;
 }
 
 .animated-underline:hover::after {
-    width: 100%; /* This will create the underline effect on hover */
+    width: 100%; 
 }
 
 .carousel-item-next,
@@ -72,9 +68,9 @@ nav div{
 }
 
 .animate-underline a {
-    color: white; /* Link color */
-    text-decoration: none; /* Remove underline */
-    display: inline-block; /* Inline block for the links */
+    color: white; 
+    text-decoration: none;
+    display: inline-block; 
     position: relative;
 }
 
@@ -201,7 +197,7 @@ input:checked + label .description {
     z-index: 9999;
   }
   
-  /* Hide content initially */
+  
   .hidden {
     display: none;
   }
@@ -216,9 +212,135 @@ input:checked + label .description {
     transform: scale(2);
 }
 
+.container {
+    overflow: hidden;
+    position: relative;
+}
+.logos {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+}
+.logos-slide {
+    display: flex;
+    animation: scroll 20s linear infinite;
+}
+.logos-slide img {
+    object-fit: contain;
+    width: 200px;
+    height: auto;
+    margin: 10px;
+}
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-200px * 9)); 
+    }
+}
+.fades {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    pointer-events: none;
+    z-index: 2;
+}
+.fades-left {
+    left: 0;
+    background: linear-gradient(to right, #e6dad2, rgba(255, 255, 255, 0));
+}
+.fades-right {
+    right: 0;
+    background: linear-gradient(to left, #F3EFEC, rgba(255, 255, 255, 0));
+}
+
+.door-container {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 999; 
+}
+
+.door-wrapper {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 3; 
+}
 
 
+.door {
+    pointer-events: none; 
+    position: relative;
+    flex-shrink: 0;
+    width: 50vw;
+    height: 100%;
+    overflow: hidden;
+    z-index: 4; 
+}
 
+.door img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
+.left-door, .right-door {
+    position: relative;
+    z-index: 5; 
+    overflow: hidden;
+    width: 50vw;
+    height: 100%;
+}
 
+.left-door img, .right-door img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
+.left-door {
+    transform: translateX(0);
+}
+
+.right-door {
+    transform: translateX(0);
+}
+
+.content {
+    position: relative;
+    z-index: 2; 
+    width: 100%;
+    height: auto;
+    background-color: #F3EFEC;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.content.show {
+    opacity: 1;
+}
+
+@media only screen and (max-width: 768px) {
+    .door-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .door {
+        width: 100%;
+        height: 50vh;
+    }
+
+    .content {
+        padding-top: 50vh;
+    }
+}
