@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="assets">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/assets/Door.zip!/" />
+      <root url="jar://$PROJECT_DIR$/assets/Inter-3.19.zip!/" />
+      <root url="jar://$PROJECT_DIR$/assets/Review.zip!/" />
+      <root url="jar://$PROJECT_DIR$/assets/Baloo_2.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
