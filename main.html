@@ -1,555 +1,520 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NuatTime</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="./style.css" rel="stylesheet">
-    <link rel="icon" type="image/png" href="/assets/NuatTime.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuat Time &mdash; Thai Reflexology in Pantai Indah Kapuk</title>
+<meta name="description" content="Thai reflexology, oil massage and traditional Thai massage in Golf Island, Pantai Indah Kapuk. Open every day, 09:00 to 21:00.">
+<meta name="theme-color" content="#F3EFEC">
 
+<meta property="og:title" content="Nuat Time — Thai Reflexology in Pantai Indah Kapuk">
+<meta property="og:description" content="Thai reflexology, oil massage and traditional Thai massage in Golf Island, PIK. Open every day, 09:00 to 21:00.">
+<meta property="og:image" content="./assets/NuatTime.png">
+<meta property="og:type" content="website">
 
+<link rel="icon" type="image/png" href="./assets/NuatTime.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="./assets/opt/inside.webp">
+<link rel="stylesheet" href="./style.css">
+
+<script>
+  /* Set the theme before first paint so the page never flashes the wrong ground */
+  (function () {
+    document.documentElement.classList.add('js');
+    try {
+      var saved = localStorage.getItem('nuat-theme');
+      var prefersDusk = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', saved || (prefersDusk ? 'dusk' : 'day'));
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'day');
+    }
+  })();
+</script>
 </head>
-<body style="background-color: #F3EFEC;">
-    <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #C8C4BF;">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <a class="navbar-brand d-none d-md-block" href="/splash.html">
-                <img src="./assets/navlogo.svg" alt="logo" style="width:150px;">
-            </a>
-            
-            <div class="collapse navbar-collapse justify-content-lg-end justify-content-center" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link animated-underline" style="font-weight:bold" href="#landing-section">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link animated-underline" style="font-weight:bold" href="#services-section">Service</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link animated-underline" style="font-weight:bold" href="#pricelist-section">Pricelist</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link animated-underline" style="font-weight:bold" href="#location-section">Location</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+
+<body>
+<a class="skip-link" href="#welcome">Skip to content</a>
+
+<!-- ====================================================================== -->
+<!-- Navigation                                                              -->
+<!-- ====================================================================== -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" href="./index.html" aria-label="Nuat Time, home">
+      <img src="./assets/navlogo.svg" alt="Nuat Time" width="206" height="51">
+    </a>
+
+    <button class="nav__burger" id="burger" type="button"
+            aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav__menu" id="nav-menu" aria-label="Primary">
+      <ul class="nav__list">
+        <li><a class="nav__link link" href="#welcome">About</a></li>
+        <li><a class="nav__link link" href="#treatments">Treatments</a></li>
+        <li><a class="nav__link link" href="#rates">Rates</a></li>
+        <li><a class="nav__link link" href="#visit">Visit</a></li>
+      </ul>
+
+      <button class="theme-toggle" id="theme-toggle" type="button"
+              aria-label="Switch to evening theme">
+        <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.2"/>
+          <path d="M12 2.4v2.2M12 19.4v2.2M4.2 12H2M22 12h-2.2M5.6 5.6 7.2 7.2M16.8 16.8l1.6 1.6M18.4 5.6 16.8 7.2M7.2 16.8l-1.6 1.6"/>
+        </svg>
+        <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5a8.6 8.6 0 1 0 11.1 11.1Z"/>
+        </svg>
+      </button>
     </nav>
+  </div>
+</header>
 
-    <div class="door-container d-none d-lg-block">
-        <div class="door-wrapper">
-            <div class="door left-door">
-                <img src="./assets/Door/door1.svg" alt="Left Door">
-            </div>
-            <div class="door right-door">
-                <img src="./assets/Door/door2.svg" alt="Right Door">
-            </div>
-        </div>        
+<main>
+
+<!-- ====================================================================== -->
+<!-- The gate. Scroll to enter the shop.                                     -->
+<!-- ====================================================================== -->
+<section class="gate" id="gate" aria-label="Entrance">
+  <div class="gate__stage">
+
+    <div class="gate__interior">
+      <img src="./assets/opt/inside.webp" alt="The treatment room at Nuat Time"
+           width="2400" height="1600" fetchpriority="high" decoding="async">
     </div>
 
-    <section class="d-none d-lg-block" style="margin-top: 50px; padding-top:100px">
-        <div style="height: 100vh; width: 100%;">
-            <img style="height: 100%; width: 100%; object-fit: cover;" src="./assets/inside2.svg" alt="">
-        </div>
-    </section>
-    
-    <section id="landing-section" class="mt-5 mt-lg-0" style="position: relative;margin-top:65px ">
-        <div class="container text-center" style="z-index: 2; position: relative;overflow:hidden">
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-4 text-center" data-aos="fade-right">
-                    <img src="./assets/Nuatlogo.svg" alt="nuattimelog" class="img-fluid" style="max-width: 100%; margin-top:50px;">
-                    <p style="margin-top:50px; font-size: 25px; font-family:'serif'">
-                        Welcome to the serene world of Thai Reflexology. Nuat Time started open in December 11th, 2023 at Blok E No. 109 Ruko Gold Island PIK.
-                    </p>
-                    <p style="margin-top:50px; font-size: 25px; font-family:'serif'">
-                        Thai Reflexology, a practice that harmonizes the body's energy flow and promotes deep relaxation.
-                    </p>
-                </div>
-                <div class="col-lg-8 d-none d-lg-block"></div>
-            </div>
-        </div>
-        <div class="container-fluid d-none d-lg-block" style="z-index: 1; position: absolute; top: 0; bottom: 0; left: 0; right: 0;">
-            <div class="row">
-                <div class="col-12" style="padding: 0;">
-                    <img class="img-fluid" src="./assets/Nuatland.svg" alt="nuattime" style="position: absolute; top: 0; right: 0; max-width: 50%; height: auto;">
-                </div>
-            </div>
-        </div>
-    </section>
-    
-
-    <section style="margin-top:400px;">
-        <div class="container" style="overflow:hidden ">
-            <div class="d-flex justify-content-center" style="font-size: 40px; font-weight: 500; padding-top: 70px;">Our Philosophy</div>
-            <div class="row justify-content-center">
-                <div class="col-4">
-                    <div class="zoom-effect" style="text-align: center; margin-top: 60px;">
-                        <img src="./assets/logo (3).svg" alt="nuattimelog" style="width: 120px; margin-top:60px;">
-                        <div class="d-flex justify-content-center">
-                            <p style="font-size: 25px; font-family:'serif'">Royal Orchid</p>
-                        </div>
-                    </div>
-                    <div class="zoom-effect" style="text-align: center; margin-top: 60px;">
-                        <img src="./assets/logo (2).svg" alt="nuattimelog" style="width: 120px; margin-top:60px;">
-                        <div class="d-flex justify-content-center">
-                            <p style="font-size: 25px; font-family:'serif'">Mindfulness</p>
-                        </div>
-                    </div>
-                    <div class="zoom-effect" style="text-align: center; margin-top: 60px;">
-                        <img src="./assets/logo (1).svg" alt="nuattimelog" style="width: 120px; margin-top:60px;">
-                        <div class="d-flex justify-content-center">
-                            <p style="font-size: 25px; font-family:'serif'">Massage</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- service Dekstop -->
-    <section id="services-section" style="margin-top:250px" class="d-none d-lg-block">
-        <div class="container" style="overflow:hidden">
-            <div class="row" style="font-size:larger">
-                <div class="col-5" style="padding-left: 90px; margin-top: 70px;" data-aos="fade-right" data-aos-duration="delay:100">
-                    <img src="./assets/AboutPic.svg" alt="servicess" style="height:600px;">
-                </div>
-                <div class="col-7">
-                    <div  style="font-size: 40px; font-weight: 500;">Services</div>
-                    <div  data-aos="fade-up">
-                        <p style="font-weight:500 ;padding-top:50px;font-size: 25px;">Full Body Reflexology</p>
-                        <p style="font-size: 25px; font-family:'serif'">Pressures on body partis to relieves tension, improve circulation ( Foot with cream, other body partis with dry massage )</p>
-                    </div>
-                    <div  data-aos="fade-up">
-                        <p style="font-weight:500 ;padding-top:20px;font-size: 25px;">Oil Massage</p>
-                        <p style="font-size: 25px; font-family:'serif'">Oil massage to body parts to relieve tension and simulate relaxation</p>
-                    </div>
-                    <div  data-aos="fade-up">
-                        <p style="font-weight:500 ;padding-top:20px;font-size: 25px;">Thai Massage</p>
-                        <p style="font-size: 25px; font-family:'serif'">Dry massage with Thai technique to relieves muscle stifness to imrpove flexibility</p>
-                    </div>
-                    <div  data-aos="fade-up">
-                        <p style="font-weight:500 ;padding-top:20px;font-size: 25px;">Other Treatment</p>
-                        <p style="font-size: 25px; font-family:'serif'">Kop / Kerik</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div style="height:100px"></div>
-    </section>
-
-    <!-- service Mobile-->
-    <section id="services-section" class="d-block d-lg-none" style="margin-top:200px">
-        <div class="container">
-            <div class="row" style="font-size:larger">
-                <div class="col-12">
-                    <div  style="font-size: 40px; font-family:'Inria-Serif',serif">Services</div>
-                    <div style="margin-top: 70px;" data-aos="fade-right" data-aos-duration="delay:100">
-                        <img src="./assets/service1.svg" class="image-fluid" alt="servicess" style="height:200px;">
-                    </div>
-                    <div  data-aos="fade-up">
-                        <p style="font-weight:bold;padding-top:50px;font-size: 20px;">Full Body Reflexology</p>
-                        <p style="font-size:20px;">Pressures on body partis to relieves tension, improve circulation ( Foot with cream, other body partis with dry massage )</p>
-                    </div>
-                    <div style="margin-top: 70px;" data-aos="fade-right" data-aos-duration="delay:100">
-                        <img src="./assets/service2.svg" class="image-fluid" alt="servicess" style="height:200px;">
-                    </div>
-                    <div  data-aos="fade-up">
-                        <p style="font-weight:bold;padding-top:20px;font-size: 20px;">Oil Massage</p>
-                        <p style="font-size:20px;">Oil massage to body parts to relieve tension and simulate relaxation</p>
-                    </div>
-                    <div style="margin-top: 70px;" data-aos="fade-right" data-aos-duration="delay:100">
-                        <img src="./assets/service3.svg" class="image-fluid" alt="servicess" style="height:200px;">
-                    </div>
-                    <div  data-aos="fade-up">
-                        <p style="font-weight:bold;padding-top:20px;font-size: 20px;">Thai Massage</p>
-                        <p style="font-size:20px;">Dry massage with Thai technique to relieves muscle stifness to imrpove flexibility</p>
-                    </div>
-                    <div  data-aos="fade-up">
-                        <p style="font-weight:bold;padding-top:20px;font-size: 20px;">Other Treatment</p>
-                        <p style="font-size:20px;">Kop / Kerik</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div style="height:100px"></div>
-    </section> 
-
-    <!-- dekstop pricelist -->
-    <section id="pricelist-section" class="d-none d-lg-block">
-        <div class="container ">
-            <div data-aos="fade-up" class="row justify-content-center p-4" style="font-size: 40px; font-weight: 500;">Pricelist</div>
-            <div  data-aos="flip-up" class="p-4 row justify-content-center">
-                <img src="./assets/fullbody.svg" alt="servicess" style="width:350px">
-                <img src="./assets/thaimassage.svg" alt="servicess" style="width:350px">
-            </div>
-            <div  data-aos="flip-up" class="p-4 row justify-content-center">
-                <img src="./assets/oilmassage.svg" alt="servicess" style="width:350px">
-                <img src="./assets/other.svg" alt="servicess" style="width:350px">
-            </div>
-        </div>
-        <div style="height:100px"></div>
-    </section>
-
-    <!-- mobile pricelist -->
-    <section id="pricelist-section" class="d-block d-lg-none">
-        <div class="container" style="width: 100%;overflow:hidden">
-            <div data-aos="fade-up" class="row justify-content-center mb-4" style="font-size: 40px; font-family: 'Inria-Serif', serif; width: 100%; text-align: center;">Pricelist</div>
-            <div class="row justify-content-center" style="width: 100%; text-align: center;">
-                <div data-aos="flip-up" class="col-12 col-md-6 col-lg-3 mb-4">
-                    <img src="./assets/fullbody.svg" alt="servicess" class="img-fluid" style="width: 100%;">
-                </div>
-                <div data-aos="flip-up" class="col-12 col-md-6 col-lg-3 mb-4">
-                    <img src="./assets/thaimassage.svg" alt="servicess" class="img-fluid" style="width: 100%;">
-                </div>
-            </div>
-            <div class="row justify-content-center" style="width: 100%; text-align: center;">
-                <div data-aos="flip-up" class="col-12 col-md-6 col-lg-3 mb-4">
-                    <img src="./assets/oilmassage.svg" alt="servicess" class="img-fluid" style="width: 100%;">
-                </div>
-                <div data-aos="flip-up" class="col-12 col-md-6 col-lg-3 mb-4">
-                    <img src="./assets/other.svg" alt="servicess" class="img-fluid" style="width: 100%;">
-                </div>
-            </div>
-        </div>
-        <div style="height: 100px;"></div>
-    </section>
-
-    <!-- Dekstop promotion -->
-    <section id="promotion-section" class="d-none d-lg-block" style="position: relative;">
-        <div class="container-fluid" style="z-index: 1; position: absolute; top: 0; left: 0; height: 100%;">
-            <div class="row">
-                <div class="col-12">
-                    <img src="./assets/promotion.svg" alt="promo" style="height: 600px; max-width: 100%; width: auto;">
-                </div>
-            </div>
-        </div>
-        <div class="container" style="z-index: 2; position: relative;">
-            <div class="row">
-                <div class="col-6 offset-4" style="padding-top: 50px;">
-                    <div style="font-size: 40px; font-weight: 500;" data-aos="fade-left" >Promotion</div>
-                    <div class="mt-5" style="font-size: 25px; font-family:'serif'; " data-aos="fade-left">
-                        Unlock the Ultimate Comfort in Wellness with Our Exclusive Reflexology Deal! Elevate your relaxation experience and immerse yourself in unparalleled comfort that rejuvenates your mind, body, and soul. Don't miss this limited-time offer to enrich your reflexology journey with us
-                    </div>
-                    <div class="mt-5">
-                        <div class="p-3 text-center" style="background-color: #AB875F; border-radius: 50px;">
-                            <a href="https://www.instagram.com/nuattime/" target="_blank"  style="color:white ;font-size: 25px; font-family:'serif'; text-decoration: none;" >
-                                Click here
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div style="height:100px"></div>
-    </section> 
-      
-    <!-- Mobile promotion -->
-    <section id="promotion-section" class="d-block d-lg-none">
-        <div class="container" style="overflow: hidden;">
-            <div class="row">
-                <div class="col-md-6 offset-md-3 text-center">
-                    <img src="./assets/promotion1.svg" alt="promo" class="d-lg-none" style="height: 200px; max-width: 100%; width: auto;">
-                    <div style="font-size: 40px; font-weight: 500;" data-aos="fade-left" >Promotion</div>
-                    <div class="mt-5" style="font-size: 25px; font-family:'serif'" data-aos="fade-left">
-                        Unlock the Ultimate Comfort in Wellness with Our Exclusive Reflexology Deal! Elevate your relaxation experience and immerse yourself in unparalleled comfort that rejuvenates your mind, body, and soul. Don't miss this limited-time offer to enrich your reflexology journey with us
-                    </div>
-                    <div class="mt-5">
-                        <div class="p-3 text-center" style="background-color: #AB875F; border-radius: 50px;">
-                            <a href="https://www.instagram.com/nuattime/" target="_blank"  style="color:white ;font-size: 25px; font-family:'serif'; text-decoration: none;" >
-                                Click here
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-      
-    <!-- Location Desktop -->
-    <section id="location-section" class="d-none d-lg-block" style="position: relative;">
-        <div class="container-fluid" style="z-index: 1; position: absolute; top: 0; right: 0; height: 100%;">
-            <div class="row">
-                <div class="col-12 text-end">
-                    <img src="./assets/location.svg" alt="locations" style="height: 800px; max-width: 100%; width: auto;">
-                </div>
-            </div>
-        </div>
-        <div class="container" style="z-index: 2; position: relative; margin-top: 100px;">
-            <div class="row">
-                <div class="col-6 offset-1" style="padding-top:150px" data-aos="fade-right">
-                    <div  data-aos="fade-right" style="font-size: 40px; font-weight: 500;">Location</div>
-                    <div  data-aos="fade-right" style="font-size: 25px; font-family:'serif';  padding-top:50px">Golf Island, Jl. Pantai Indah Kapuk Ruko No.109 Blok E, jakarta, Daerah Khusus Ibukota Jakarta 14460</div>
-                    <div data-aos="fade-right">
-                        <p style="font-size: 25px; font-family:'serif'; ">Everyday</p>
-                        <p style="font-size: 25px; font-family:'serif'; ">Opens : 09:00 AM</p>
-                        <p style="font-size: 25px; font-family:'serif'; ">Close : 21.00 PM</p>
-                        <div class="mt-5">
-                            <a href="https://maps.app.goo.gl/HDFvqCjEjEKQF6EN8" style="text-decoration: none;">
-                                <div class="p-3 text-center" style="background-color: #AB875F; border-radius: 50px; max-width: 270px; color:white; font-size: 25px; font-family:'serif'; ">
-                                    Open map
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6"></div>
-            </div>
-        </div>
-        <div style="height:500px"></div>
-    </section> 
-
-    <!-- Mobile Location -->
-    <section id="location-section" class="d-block d-lg-none" style="padding-bottom:200px;">
-        <div class="container" style="z-index: 2; position: relative; margin-top: 100px; padding-top: 150px; overflow:hidden;">
-            <div class="row">
-                <div class="col-lg-6 d-block d-lg-none text-end" style="transform: scaleX(-1);">
-                    <img src="./assets/location1.svg" alt="locations" style="height: auto; max-width: 100%; width: 100%;">
-                </div>
-                <div class="col-lg-6 offset-lg-1" data-aos="fade-right">
-                    <div data-aos="fade-right" style="font-size: 40px; font-family: 'Inria-Serif', serif;">Location</div>
-                    <div data-aos="fade-right" style="font-size: 25px; padding-top: 50px;">Golf Island, Jl. Pantai Indah Kapuk Ruko No.109 Blok E, Jakarta, Daerah Khusus Ibukota Jakarta 14460</div>
-                    <div data-aos="fade-right">
-                        <p style="font-size: 25px; font-family: 'serif';">Everyday</p>
-                        <p style="font-size: 25px; font-family: 'serif';">Opens: 09:00 AM</p>
-                        <p style="font-size: 25px; font-family: 'serif';">Close: 21:00 PM</p>
-                        <div class="mt-5">
-                            <a href="https://maps.app.goo.gl/HDFvqCjEjEKQF6EN8" target="_blank" style="text-decoration: none;">
-                                <div class="p-3 text-center" style="background-color: #AB875F; border-radius: 50px; max-width: 270px; color: white; font-size: 25px; font-family: 'serif';">
-                                    Open map
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="d-none d-lg-block">
-        <div class="wrapper">
-            <div class="container1">
-                <input type="radio" name="slide" id="c1" checked>
-                <label for="c1" class="card">
-                    <div class="row">
-                        <div class="icon">1</div>
-                        <div class="description">
-                            <div style="padding-top: 60px;color:white; font-size: 40px; font-weight: 500;">Comfortable</div>
-                            <p style="color:white; font-size: 20px; font-family:'serif'; padding-bottom: 50px;">Comfortable place where you enjoy your time</p>
-                        </div>
-                    </div>
-                </label>
-                <input type="radio" name="slide" id="c2" >
-                <label for="c2" class="card">
-                    <div class="row">
-                        <div class="icon">2</div>
-                        <div class="description">
-                            <div style="padding-top: 60px;color:#613E2C; font-size: 40px; font-weight: 500;">Relax</div>
-                            <p style="color:#613E2C; font-size: 20px; font-family:'serif'; padding-bottom: 50px;">Quite and relax</p>
-                        </div>
-                    </div>
-                </label>
-                <input type="radio" name="slide" id="c3" >
-                <label for="c3" class="card">
-                    <div class="row">
-                        <div class="icon">3</div>
-                        <div class="description">
-                            <div style="padding-top: 60px;color:white; font-size: 40px; font-weight: 500;">Modern</div>
-                            <p style="color:white; font-size: 20px; font-family:'serif'; padding-bottom: 50px;">Modern designs and interior</p>
-                        </div>
-                    </div>
-                </label>
-                <input type="radio" name="slide" id="c4" >
-                <label for="c4" class="card">
-                    <div class="row">
-                        <div class="icon">4</div>
-                        <div class="description">
-                            <div style="padding-top: 60px;color:#613E2C; font-size: 40px; font-weight: 500;">Safe</div>
-                            <p style="color:#613E2C; font-size: 20px; font-family:'serif'; padding-bottom: 50px;">Keep your belongings safe</p>
-                        </div>
-                    </div>
-                </label>
-            </div>
-        </div>
-    </section>      
-
-    <div class="container" style="margin-top: 200px; margin-bottom: 200px;">
-        <div class="row">
-            <div class="d-flex justify-content-center" style="font-size: 40px; font-weight: 500; padding-bottom: 50px;">What they say </div>
-            <div class="col">
-                <div class="row logos">
-                    <div class="logos-slide">
-                        <img src="./assets/Review/review (1).svg" alt="Image 1">
-                        <img src="./assets/Review/review (2).svg" alt="Image 2">
-                        <img src="./assets/Review/review (3).svg" alt="Image 3">
-                        <img src="./assets/Review/review (4).svg" alt="Image 4">
-                        <img src="./assets/Review/review (5).svg" alt="Image 5">
-                        <img src="./assets/Review/review (6).svg" alt="Image 6">
-                        <img src="./assets/Review/review (7).svg" alt="Image 7">
-                        <img src="./assets/Review/review (8).svg" alt="Image 8">
-                        <img src="./assets/Review/review (9).svg" alt="Image 9">
-                        <img src="./assets/Review/review (10).svg" alt="Image 10">
-                        <img src="./assets/Review/review (1).svg" alt="Image 1">
-                        <img src="./assets/Review/review (2).svg" alt="Image 2">
-                        <img src="./assets/Review/review (3).svg" alt="Image 3">
-                        <img src="./assets/Review/review (4).svg" alt="Image 4">
-                        <img src="./assets/Review/review (5).svg" alt="Image 5">
-                        <img src="./assets/Review/review (6).svg" alt="Image 6">
-                        <img src="./assets/Review/review (7).svg" alt="Image 7">
-                        <img src="./assets/Review/review (8).svg" alt="Image 8">
-                        <img src="./assets/Review/review (9).svg" alt="Image 9">
-                        <img src="./assets/Review/review (10).svg" alt="Image 10">
-                    </div>
-                    <div class="logos-slide">
-                        <img src="./assets/Review/review (11).svg" alt="Image 19">
-                        <img src="./assets/Review/review (12).svg" alt="Image 20">
-                        <img src="./assets/Review/review (13).svg" alt="Image 21">
-                        <img src="./assets/Review/review (14).svg" alt="Image 22">
-                        <img src="./assets/Review/review (15).svg" alt="Image 23">
-                        <img src="./assets/Review/review (16).svg" alt="Image 24">
-                        <img src="./assets/Review/review (17).svg" alt="Image 25">
-                        <img src="./assets/Review/review (18).svg" alt="Image 26">
-                        <img src="./assets/Review/review (19).svg" alt="Image 27">
-                        <img src="./assets/Review/review (11).svg" alt="Image 19">
-                        <img src="./assets/Review/review (12).svg" alt="Image 20">
-                        <img src="./assets/Review/review (13).svg" alt="Image 21">
-                        <img src="./assets/Review/review (14).svg" alt="Image 22">
-                        <img src="./assets/Review/review (15).svg" alt="Image 23">
-                        <img src="./assets/Review/review (16).svg" alt="Image 24">
-                        <img src="./assets/Review/review (17).svg" alt="Image 25">
-                        <img src="./assets/Review/review (18).svg" alt="Image 26">
-                        <img src="./assets/Review/review (19).svg" alt="Image 27">
-                    </div>
-                </div>
-                <div class="fades fades-left"></div>
-                <div class="fades fades-right"></div>
-            </div>
-        </div>
+    <div class="gate__word">
+      <h1 class="gate__name">Nuat Time</h1>
+      <p class="gate__tagline">Thai reflexology in Pantai Indah Kapuk</p>
     </div>
 
-    <footer style="color:white; background-color: #613E2C;">
-        <div class="container p-5">
-            <div class="row">
-                <div class="col-6">
-                    <div style="color:white; padding-top:50px;font-weight: bold;font-size:20px;">
-                        Contact Number
-                    </div>
-                    <div style="color:white;padding-top:20px;font-size:20px;">
-                        <img src="./assets/logo/WA.png">
-                        0851-8688-8510
-                    </div>
-                    <div style="color:white; padding-top:50px;font-weight: bold;font-size:20px;">
-                        Checkout our Social Media
-                    </div>
-                    <div style="color:white;padding-top:20px;font-size:20px;">
-                        <a href="https://www.instagram.com/nuattime/" target="_blank" style="text-decoration:none; color: white;">
-                            <img src="./assets/logo/ig.png" alt="Instagram logo" style="vertical-align:middle;">
-                            nuattime
-                        </a>
-                    </div>
-                    <div style="color:white;padding-top:20px;font-size:20px;">
-                        <a href="https://www.tiktok.com/@nuattime" target="_blank" style="text-decoration:none; color: white;">
-                            <img src="./assets/logo/tt.png" alt="TikTok logo" style="vertical-align:middle;">
-                            nuattime
-                        </a>
-                    </div>
-                    <div style="color:white;padding-top:20px;font-size:20px;">
-                        <a href="https://www.facebook.com/profile.php?id=61552768587786" target="_blank" style="text-decoration:none; color: white;">
-                            <img src="./assets/logo/fb.png" alt="Facebook logo" style="vertical-align:middle;">
-                            Nuat Time
-                        </a>
-                    </div>                                     
-                </div>
-                <div class="col-6">
-                    <div style="color:white; padding-top:50px">Ruko Golf Island blok E 109-111 Pantai Indah Kapuk - Jakarta Utara</div>
-                    <div style="padding-top:50px;" class="d-block">
-                        <div class="animate-underline" style="padding-top:20px;">
-                            <a href="#landing-section" style="color:white; text-decoration: none;">About</a> 
-                        </div>
-                        <div class="animate-underline" style="padding-top:20px;">
-                            <a href="#services-section" style="color:white; text-decoration: none;">Service</a>
-                        </div>
-                        <div class="animate-underline" style="padding-top:20px;">
-                            <a href="#pricelist-section" style="color:white; text-decoration: none;">Pricelist</a>
-                        </div>
-                        <div class="animate-underline" style="padding-top:20px;">
-                            <a href="#location-section" style="color:white; text-decoration: none;">Location</a>
-                        </div> 
-                    </div>
-                </div>                    
-            </div>
+    <div class="gate__panel gate__panel--l" aria-hidden="true">
+      <img src="./assets/opt/door1.webp" alt="" decoding="async">
+    </div>
+    <div class="gate__panel gate__panel--r" aria-hidden="true">
+      <img src="./assets/opt/door2.webp" alt="" decoding="async">
+    </div>
+
+    <div class="gate__cue" aria-hidden="true">
+      <span class="gate__cue-rail"></span>
+      <span>Scroll to come in</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- Welcome                                                                 -->
+<!-- ====================================================================== -->
+<section class="section welcome" id="welcome">
+  <div class="shell">
+    <div class="split">
+      <div>
+        <h2 class="d-hero reveal"><span>Rest is<br>a practice.</span></h2>
+      </div>
+
+      <div>
+        <p class="lede">
+          Thai reflexology works the body&rsquo;s energy lines to settle the nervous
+          system and bring you back to a slower pace.
+        </p>
+
+        <div class="prose" style="margin-top: var(--s-5)">
+          <p>
+            We opened on 11 December 2023 in Ruko Golf Island, Pantai Indah Kapuk,
+            and have kept the same intent since: an unhurried room, trained hands,
+            and treatments that leave you looser than you arrived.
+          </p>
+          <p>
+            Walk in, or send us a message on WhatsApp and we will hold a bed for you.
+          </p>
         </div>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
-    <script>
-        window.addEventListener('scroll', function() {
-            var navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) { // Check if the page is scrolled down by 50 pixels
-                navbar.classList.add('transparent');
-            } else {
-                navbar.classList.remove('transparent');
-            }
-        });
-    </script>
-    <script>
-         AOS.init({
-            duration: 1500, // New global duration
-        });
-        AOS.refresh();
-    </script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-       $(document).ready(function() {
-            var doorsAnimated = false;
-            var doorsFullyOpened = false;
-            var contentHeight = $(document).height();
 
-            function animateDoors() {
-                var scrollTop = $(window).scrollTop();
-                var scrollPercent = (scrollTop / contentHeight) * 100;
+        <p class="welcome__meta">
+          <span><b>Open every day</b> 09:00 &ndash; 21:00</span>
+          <span><b>Since</b> December 2023</span>
+          <span><b>Where</b> Golf Island, PIK</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
-                if (!doorsAnimated) {
-                    var leftDoorShift = -Math.min(scrollTop, 8000); // Mengurangi nilai batas atas
-                    var rightDoorShift = Math.min(scrollTop, 8000); // Mengurangi nilai batas atas
-                    $('.left-door').css('transform', 'translateX(' + leftDoorShift + 'px)');
-                    $('.right-door').css('transform', 'translateX(' + rightDoorShift + 'px)');
-                    if (scrollPercent >= 100) { // Check if doors reach the bottom
-                        doorsAnimated = true;
-                    }
-                }
+<!-- ====================================================================== -->
+<!-- Philosophy                                                              -->
+<!-- ====================================================================== -->
+<section class="section section--tight" aria-labelledby="philosophy-title">
+  <div class="shell">
+    <div class="head">
+      <h2 class="d-section reveal" id="philosophy-title"><span>What we practise</span></h2>
+    </div>
 
-                if (doorsAnimated && !doorsFullyOpened && scrollTop >= contentHeight - $(window).height()) {
-                    doorsFullyOpened = true;
-                    $('body').addClass('show');
-                    $('body').css('overflow', 'auto');
-                }
-            }
+    <div class="tenets">
+      <article class="tenet">
+        <img class="tenet__mark" src="./assets/logo (3).svg" alt="" loading="lazy" decoding="async">
+        <h3 class="tenet__name">Royal Orchid</h3>
+        <p class="tenet__note">The Thai lineage our therapists are trained in, kept close to how it is taught at home.</p>
+      </article>
 
-            $(window).on('scroll', function() {
-                requestAnimationFrame(animateDoors);
-                if (doorsAnimated && !doorsFullyOpened) {
-                    $('body').css('overflow', 'hidden');
-                } else {
-                    $('body').css('overflow', 'auto');
-                }
-            });
-        });
-    </script> 
-    <script>
-        var door = document.querySelector('.door-container');
-        function handleScroll() {
-            var scrollPosition = window.scrollY || window.pageYOffset;
-            if (scrollPosition > 200) {
-                door.style.pointerEvents = 'none';
-            } else {
-                door.style.pointerEvents = 'auto';
-            }
-        }
-        window.addEventListener('scroll', handleScroll);    
-    </script>
+      <article class="tenet">
+        <img class="tenet__mark" src="./assets/logo (2).svg" alt="" loading="lazy" decoding="async">
+        <h3 class="tenet__name">Mindfulness</h3>
+        <p class="tenet__note">A quiet room, no rush between sessions, and full attention on the person on the bed.</p>
+      </article>
+
+      <article class="tenet">
+        <img class="tenet__mark" src="./assets/logo (1).svg" alt="" loading="lazy" decoding="async">
+        <h3 class="tenet__name">Touch</h3>
+        <p class="tenet__note">Pressure read from the body itself, adjusted as we go, never applied to a formula.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- Treatments                                                              -->
+<!-- ====================================================================== -->
+<section class="section" id="treatments" aria-labelledby="treatments-title">
+  <div class="shell">
+    <div class="split">
+
+      <div>
+        <div class="head">
+          <h2 class="d-section reveal" id="treatments-title"><span>Treatments</span></h2>
+          <p class="head__note">Four ways to be worked on. Tell us where you hold tension and we will start there.</p>
+        </div>
+        <figure class="figure figure--portrait" style="max-width: 300px">
+          <img src="./assets/opt/lounge.webp" alt="The waiting lounge at Nuat Time"
+               width="1400" height="2100" loading="lazy" decoding="async">
+        </figure>
+      </div>
+
+      <div class="ledger">
+        <article class="treatment">
+          <h3 class="treatment__name">Full Body Reflexology</h3>
+          <div>
+            <figure class="treatment__figure">
+              <img src="./assets/service1.svg" alt="" loading="lazy" decoding="async">
+            </figure>
+            <p class="treatment__body">
+              Pressure applied along the body to release tension and improve
+              circulation.
+              <span class="treatment__aside">Feet are worked with cream; everywhere else, dry.</span>
+            </p>
+          </div>
+        </article>
+
+        <article class="treatment">
+          <h3 class="treatment__name">Oil Massage</h3>
+          <div>
+            <figure class="treatment__figure">
+              <img src="./assets/service2.svg" alt="" loading="lazy" decoding="async">
+            </figure>
+            <p class="treatment__body">
+              Warm oil worked into the body to ease tension and draw you down into
+              deep relaxation.
+            </p>
+          </div>
+        </article>
+
+        <article class="treatment">
+          <h3 class="treatment__name">Thai Massage</h3>
+          <div>
+            <figure class="treatment__figure">
+              <img src="./assets/service3.svg" alt="" loading="lazy" decoding="async">
+            </figure>
+            <p class="treatment__body">
+              Dry massage in the Thai technique &mdash; stretching and pressing to
+              loosen stiff muscle and give movement back.
+            </p>
+          </div>
+        </article>
+
+        <article class="treatment">
+          <h3 class="treatment__name">Kop &amp; Kerik</h3>
+          <div>
+            <p class="treatment__body">
+              Traditional cupping and coin therapy, taken on their own or added to
+              any treatment above.
+            </p>
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- Rates                                                                   -->
+<!-- ====================================================================== -->
+<section class="section" id="rates" aria-labelledby="rates-title">
+  <div class="shell">
+    <div class="head">
+      <h2 class="d-section reveal" id="rates-title"><span>Rates</span></h2>
+      <p class="head__note">Priced by the hour. No membership, no package to sign up for.</p>
+    </div>
+
+    <div class="rates">
+      <div class="rate"><img src="./assets/fullbody.svg" alt="Full body reflexology rates" loading="lazy" decoding="async"></div>
+      <div class="rate"><img src="./assets/thaimassage.svg" alt="Thai massage rates" loading="lazy" decoding="async"></div>
+      <div class="rate"><img src="./assets/oilmassage.svg" alt="Oil massage rates" loading="lazy" decoding="async"></div>
+      <div class="rate"><img src="./assets/other.svg" alt="Kop and Kerik rates" loading="lazy" decoding="async"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- Offer                                                                   -->
+<!-- ====================================================================== -->
+<section class="section offer" id="offer" aria-labelledby="offer-title">
+  <div class="shell">
+    <div class="offer__grid">
+      <div class="offer__art">
+        <img src="./assets/opt/promotion.webp" alt="Nuat Time promotional treatment" loading="lazy" decoding="async">
+      </div>
+
+      <div>
+        <h2 class="d-section reveal" id="offer-title"><span>This month at Nuat Time</span></h2>
+        <div class="prose" style="margin-top: var(--s-5)">
+          <p>
+            We run a standing offer on reflexology for regulars and first-timers
+            alike. The current one is posted on Instagram, along with what is
+            available this week.
+          </p>
+        </div>
+        <p style="margin-top: var(--s-6)">
+          <a class="btn" href="https://www.instagram.com/nuattime/" target="_blank" rel="noopener">
+            <span class="btn__dot"></span>See this month&rsquo;s offer
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- The room                                                                -->
+<!-- ====================================================================== -->
+<section class="section" aria-labelledby="room-title">
+  <div class="shell shell--wide">
+    <div class="head">
+      <h2 class="d-section reveal" id="room-title"><span>The room</span></h2>
+      <p class="head__note">Pick a panel to look around.</p>
+    </div>
+
+    <div class="room">
+      <input class="room__input" type="radio" name="room" id="room-1" checked>
+      <label class="room__panel" data-img="1" for="room-1">
+        <span class="room__caption">
+          <span class="room__title">Comfortable</span>
+          <span class="room__note">Beds set far enough apart that the room stays yours.</span>
+        </span>
+      </label>
+
+      <input class="room__input" type="radio" name="room" id="room-2">
+      <label class="room__panel" data-img="2" for="room-2">
+        <span class="room__caption">
+          <span class="room__title">Quiet</span>
+          <span class="room__note">Low light, low sound, and no queue moving through.</span>
+        </span>
+      </label>
+
+      <input class="room__input" type="radio" name="room" id="room-3">
+      <label class="room__panel" data-img="3" for="room-3">
+        <span class="room__caption">
+          <span class="room__title">Modern</span>
+          <span class="room__note">Built new in 2023, and kept that way.</span>
+        </span>
+      </label>
+
+      <input class="room__input" type="radio" name="room" id="room-4">
+      <label class="room__panel" data-img="4" for="room-4">
+        <span class="room__caption">
+          <span class="room__title">Secure</span>
+          <span class="room__note">A locker for your things while you are on the bed.</span>
+        </span>
+      </label>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- Visit                                                                   -->
+<!-- ====================================================================== -->
+<section class="section visit" id="visit" aria-labelledby="visit-title">
+  <div class="shell">
+    <div class="visit__grid">
+      <div>
+        <div class="head">
+          <h2 class="d-section reveal" id="visit-title"><span>Visit</span></h2>
+        </div>
+        <address class="address" style="font-style: normal">
+          Ruko Golf Island Blok E No.&nbsp;109&ndash;111<br>
+          Jl. Pantai Indah Kapuk<br>
+          Jakarta Utara 14460
+        </address>
+      </div>
+
+      <div>
+        <ul class="hours">
+          <li><span>Monday to Sunday</span> <b>09:00 &ndash; 21:00</b></li>
+          <li><span>Last booking</span> <b>20:00</b></li>
+          <li><span>WhatsApp</span> <b>0851&#8209;8688&#8209;8510</b></li>
+        </ul>
+
+        <p style="margin-top: var(--s-6); display: flex; flex-wrap: wrap; gap: var(--s-4)">
+          <a class="btn" href="https://wa.me/6285186888510" target="_blank" rel="noopener">
+            <span class="btn__dot"></span>Book on WhatsApp
+          </a>
+          <a class="btn btn--ghost" href="https://maps.app.goo.gl/HDFvqCjEjEKQF6EN8" target="_blank" rel="noopener">
+            Open in Google Maps
+          </a>
+        </p>
+      </div>
+
+      <figure class="figure figure--portrait">
+        <img src="./assets/opt/storefront.webp" alt="The Nuat Time shopfront on Golf Island at dusk"
+             width="1600" height="2400" loading="lazy" decoding="async">
+        <figcaption class="figure__caption">Look for the carved doors on Blok E.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- Reviews                                                                 -->
+<!-- ====================================================================== -->
+<section class="section section--tight" aria-labelledby="reviews-title">
+  <div class="shell">
+    <div class="head">
+      <h2 class="d-section reveal" id="reviews-title"><span>What guests say</span></h2>
+    </div>
+  </div>
+
+  <div class="marquee">
+    <div class="marquee__row marquee__row--a">
+      <div class="marquee__track">
+        <img src="./assets/Review/review (1).svg" alt="Guest review" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (2).svg" alt="Guest review" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (3).svg" alt="Guest review" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (4).svg" alt="Guest review" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (5).svg" alt="Guest review" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (6).svg" alt="Guest review" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (7).svg" alt="Guest review" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (8).svg" alt="Guest review" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (9).svg" alt="Guest review" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (10).svg" alt="Guest review" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (1).svg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (2).svg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (3).svg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (4).svg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (5).svg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (6).svg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (7).svg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (8).svg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (9).svg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (10).svg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      </div>
+    </div>
+
+    <div class="marquee__row marquee__row--b">
+      <div class="marquee__track">
+        <img src="./assets/Review/review (11).svg" alt="Guest review" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (12).svg" alt="Guest review" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (13).svg" alt="Guest review" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (14).svg" alt="Guest review" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (15).svg" alt="Guest review" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (16).svg" alt="Guest review" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (17).svg" alt="Guest review" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (18).svg" alt="Guest review" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (19).svg" alt="Guest review" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (11).svg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (12).svg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (13).svg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (14).svg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (15).svg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (16).svg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (17).svg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (18).svg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img src="./assets/Review/review (19).svg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ====================================================================== -->
+<!-- Footer                                                                  -->
+<!-- ====================================================================== -->
+<footer class="footer">
+  <div class="shell">
+    <div class="footer__grid">
+
+      <div>
+        <h2 class="d-lead">Come in.<br>We are open until nine.</h2>
+        <p class="footer__call">
+          <a class="btn" href="https://wa.me/6285186888510" target="_blank" rel="noopener">
+            <span class="btn__dot"></span>Message us on WhatsApp
+          </a>
+        </p>
+      </div>
+
+      <div>
+        <p class="footer__label">Find us</p>
+        <ul class="footer__list">
+          <li>Ruko Golf Island Blok E 109&ndash;111<br>Pantai Indah Kapuk, Jakarta Utara</li>
+          <li><a class="link" href="https://maps.app.goo.gl/HDFvqCjEjEKQF6EN8" target="_blank" rel="noopener">Open in Google Maps</a></li>
+          <li><a class="link" href="tel:+6285186888510">0851&#8209;8688&#8209;8510</a></li>
+        </ul>
+
+        <p class="footer__label" style="margin-top: var(--s-6)">Social</p>
+        <ul class="footer__list">
+          <li>
+            <a class="social" href="https://www.instagram.com/nuattime/" target="_blank" rel="noopener">
+              <img src="./assets/logo/ig.png" alt="" loading="lazy" decoding="async"><span class="link">Instagram</span>
+            </a>
+          </li>
+          <li>
+            <a class="social" href="https://www.tiktok.com/@nuattime" target="_blank" rel="noopener">
+              <img src="./assets/logo/tt.png" alt="" loading="lazy" decoding="async"><span class="link">TikTok</span>
+            </a>
+          </li>
+          <li>
+            <a class="social" href="https://www.facebook.com/profile.php?id=61552768587786" target="_blank" rel="noopener">
+              <img src="./assets/logo/fb.png" alt="" loading="lazy" decoding="async"><span class="link">Facebook</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer__label">This page</p>
+        <ul class="footer__list">
+          <li><a class="link" href="#welcome">About</a></li>
+          <li><a class="link" href="#treatments">Treatments</a></li>
+          <li><a class="link" href="#rates">Rates</a></li>
+          <li><a class="link" href="#visit">Visit</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer__bottom">
+      <span>&copy; <span id="year">2026</span> Nuat Time</span>
+      <span>Open every day, 09:00 &ndash; 21:00</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="./motion.js"></script>
 </body>
 </html>
