@@ -1,0 +1,873 @@
+/* ==========================================================================
+   Nuat Time - global design system
+   Imported once, in app/layout.tsx. Component styles live here rather
+   than in CSS Modules because this is a shared token system, not a set
+   of isolated component styles.
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. Tokens
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* Brand - carried over from the existing Nuat Time identity */
+  --paper:  #F3EFEC;   /* cream ground */
+  --stone:  #C8C4BF;   /* warm grey */
+  --tan:    #AB875F;   /* brass-tan accent */
+  --clay:   #613E2C;   /* signature brown */
+
+  /* Extended - depth for evening hours, and herbal provenance */
+  --bark:   #2A1B12;   /* near-black brown */
+  --pandan: #3F4B3A;   /* deep lemongrass green */
+
+  /* Semantic - Day */
+  --ground:      var(--paper);
+  --ground-sunk: #EAE4DF;
+  --ink:         var(--clay);
+  --ink-strong:  var(--bark);
+  --ink-soft:    #8A7061;
+  --line:        rgba(97, 62, 44, .16);
+  --line-firm:   rgba(97, 62, 44, .34);
+  --accent:      var(--tan);
+  --on-accent:   #FFFFFF;
+
+  /* Type scale - 17px base, ratio approx 1.26 */
+  /* Supplied by next/font in app/layout.tsx - self-hosted, no network request */
+  --font-display: var(--f-fraunces), 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --font-text: var(--f-jakarta), ui-sans-serif, system-ui, 'Segoe UI', sans-serif;
+
+  --t-0: 1rem;
+  --t-1: 1.26rem;
+  --t-2: clamp(1.34rem, 1.10rem + 0.70vw, 1.588rem);
+  --t-3: clamp(1.60rem, 1.28rem + 1.10vw, 2.000rem);
+  --t-4: clamp(1.95rem, 1.45rem + 1.90vw, 2.520rem);
+  --t-5: clamp(2.30rem, 1.60rem + 3.00vw, 3.180rem);
+  --t-6: clamp(2.70rem, 1.70rem + 4.60vw, 4.000rem);
+  --t-7: clamp(3.10rem, 1.60rem + 7.00vw, 5.500rem);
+
+  /* Space - 4px base */
+  --s-1: .25rem;  --s-2: .5rem;   --s-3: .75rem;  --s-4: 1rem;
+  --s-5: 1.5rem;  --s-6: 2rem;    --s-7: 3rem;    --s-8: 4rem;
+  --s-9: 6rem;    --s-10: 8rem;   --s-11: 11rem;
+
+  /* Measure, rhythm, motion */
+  --measure: 62ch;
+  --radius: 2px;
+  --radius-lg: 8px;
+  --shell: 1240px;
+  --gutter: clamp(1.25rem, 5vw, 4.5rem);
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  --ease-io: cubic-bezier(.65, .05, .36, 1);
+  --nav-h: 74px;
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset and base
+   -------------------------------------------------------------------------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-h) + 1rem);
+  -webkit-text-size-adjust: 100%;
+  /* Must live here, not on body: overflow on body makes it a scroll container
+     whose scrollTop stays 0, which breaks IntersectionObserver clipping. */
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-text);
+  font-size: clamp(1rem, .96rem + .18vw, 1.0625rem);
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: -.006em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img, svg, picture, video { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; }
+
+::selection { background: var(--accent); color: var(--on-accent); }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--radius);
+}
+
+.skip-link {
+  position: fixed; top: -120%; left: var(--s-4); z-index: 2000;
+  background: var(--clay); color: #fff; padding: var(--s-3) var(--s-5);
+  border-radius: var(--radius); text-decoration: none; font-weight: 600;
+}
+.skip-link:focus { top: var(--s-4); }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   3. Typography
+   -------------------------------------------------------------------------- */
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-variation-settings: "opsz" 96, "SOFT" 48, "WONK" 1;
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: -.022em;
+  color: var(--ink-strong);
+  margin: 0;
+  text-wrap: balance;
+}
+
+.d-hero    { font-size: var(--t-7); line-height: .95; letter-spacing: -.035em; }
+.d-section { font-size: var(--t-6); }
+.d-lead    { font-size: var(--t-4); }
+.d-item    { font-size: var(--t-3); }
+
+/* Fraunces italic at a low optical size reads written, not decorative */
+.d-quiet {
+  font-family: var(--font-display);
+  font-variation-settings: "opsz" 14, "SOFT" 70, "WONK" 1;
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--t-2);
+  line-height: 1.45;
+  letter-spacing: -.01em;
+  color: var(--ink-soft);
+}
+
+p { margin: 0 0 var(--s-4); max-width: var(--measure); }
+p:last-child { margin-bottom: 0; }
+
+.lede {
+  font-size: var(--t-2);
+  line-height: 1.5;
+  font-weight: 350;
+  max-width: 34ch;
+}
+
+.prose { color: var(--ink-soft); max-width: 58ch; }
+
+/* --------------------------------------------------------------------------
+   4. Layout primitives
+   -------------------------------------------------------------------------- */
+
+.shell {
+  width: 100%;
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.shell--wide { max-width: 1480px; }
+
+.section { padding-block: clamp(4.5rem, 11vw, 9rem); position: relative; }
+.section--tight { padding-block: clamp(3rem, 7vw, 5.5rem); }
+
+/* Asymmetric split: a narrow titling rail beside a wide content column.
+   Left-aligned throughout - the original centred everything, which flattened
+   the hierarchy. */
+.split {
+  display: grid;
+  gap: var(--s-6);
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+@media (min-width: 900px) {
+  .split { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s-9); }
+  .split--sticky > :first-child { position: sticky; top: calc(var(--nav-h) + 3rem); }
+}
+
+.rule { height: 1px; background: var(--line); border: 0; margin: 0; }
+
+.head { margin-bottom: var(--s-7); }
+.head__note { margin-top: var(--s-4); color: var(--ink-soft); max-width: 46ch; }
+
+/* --------------------------------------------------------------------------
+   5. Buttons and links
+   -------------------------------------------------------------------------- */
+
+.btn {
+  --btn-bg: var(--accent);
+  --btn-fg: var(--on-accent);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: .95rem 1.9rem;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  border: 1px solid var(--btn-bg);
+  border-radius: 999px;
+  font-size: var(--t-0);
+  font-weight: 600;
+  letter-spacing: -.01em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .35s var(--ease), background-color .35s var(--ease),
+              color .35s var(--ease), border-color .35s var(--ease);
+}
+.btn:hover { transform: translateY(-2px); background: var(--clay); border-color: var(--clay); color: #fff; }
+.btn:active { transform: translateY(0); }
+
+.btn--ghost { --btn-bg: transparent; --btn-fg: var(--ink); border-color: var(--line-firm); }
+.btn--ghost:hover { background: var(--ink-strong); border-color: var(--ink-strong); color: var(--ground); }
+
+.btn__dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: .5; flex: none; }
+
+.link { position: relative; text-decoration: none; padding-bottom: 2px; }
+.link::after {
+  content: '';
+  position: absolute; left: 0; bottom: 0;
+  width: 100%; height: 1px;
+  background: currentColor;
+  transform: scaleX(0); transform-origin: right;
+  transition: transform .4s var(--ease), opacity .3s var(--ease);
+}
+.link:hover::after, .link:focus-visible::after { transform: scaleX(1); transform-origin: left; }
+
+/* --------------------------------------------------------------------------
+   6. Navigation
+   -------------------------------------------------------------------------- */
+
+.nav {
+  position: fixed; inset: 0 0 auto 0; z-index: 100;
+  height: var(--nav-h);
+  display: flex; align-items: center;
+  background: transparent;
+  transition: background-color .45s var(--ease), border-color .45s var(--ease),
+              backdrop-filter .45s var(--ease);
+  border-bottom: 1px solid transparent;
+}
+.nav.is-stuck {
+  background: color-mix(in srgb, var(--ground) 82%, transparent);
+  backdrop-filter: blur(16px) saturate(1.3);
+  -webkit-backdrop-filter: blur(16px) saturate(1.3);
+  border-bottom-color: var(--line);
+}
+
+.nav__inner {
+  width: 100%; max-width: var(--shell);
+  margin-inline: auto; padding-inline: var(--gutter);
+  display: flex; align-items: center; justify-content: space-between; gap: var(--s-5);
+}
+
+.nav__brand { display: flex; align-items: center; text-decoration: none; flex: none; }
+.nav__brand img { width: 132px; height: auto; transition: filter .45s var(--ease); }
+
+/* At the very top the nav floats over the dark carved door, so it inverts.
+   The moment it sticks, it returns to the page's own colours. */
+.nav:not(.is-stuck) { color: #F6F0EA; }
+.nav:not(.is-stuck) .nav__link { color: #F6F0EA; }
+.nav:not(.is-stuck) .nav__brand img { filter: brightness(0) invert(1); }
+.nav:not(.is-stuck) .nav__burger { border-color: rgba(246, 240, 234, .45); color: #F6F0EA; }
+
+@media (max-width: 860px) {
+  /* Once the panel drops open it needs the page's own ground behind it */
+  .nav.is-open { background: var(--ground); border-bottom-color: var(--line); }
+  .nav.is-open:not(.is-stuck) { color: var(--ink); }
+  .nav.is-open:not(.is-stuck) .nav__link { color: var(--ink); }
+  .nav.is-open:not(.is-stuck) .nav__brand img { filter: none; }
+  .nav.is-open:not(.is-stuck) .nav__burger { border-color: var(--line-firm); color: var(--ink); }
+}
+
+.nav__menu { display: flex; align-items: center; gap: clamp(1rem, 2.4vw, 2.25rem); }
+.nav__list { display: flex; align-items: center; gap: clamp(1rem, 2.4vw, 2.25rem); list-style: none; margin: 0; padding: 0; }
+.nav__link {
+  text-decoration: none; font-size: .95rem; font-weight: 500;
+  letter-spacing: -.008em; color: var(--ink);
+}
+
+/* Mobile menu */
+/* Flex, not grid: stretched grid rows put the bars 13px apart, so the
+   5.5px convergence below drew a chevron instead of a cross. */
+.nav__burger {
+  display: none; width: 40px; height: 40px; flex: none;
+  background: transparent; border: 1px solid var(--line-firm); border-radius: 50%;
+  cursor: pointer;
+  flex-direction: column; align-items: center; justify-content: center;
+}
+.nav__burger span {
+  display: block; width: 15px; height: 1.5px; background: currentColor;
+  transition: transform .4s var(--ease), opacity .3s var(--ease);
+}
+.nav__burger span + span { margin-top: 4px; }
+.nav.is-open .nav__burger span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+.nav.is-open .nav__burger span:nth-child(2) { opacity: 0; }
+.nav.is-open .nav__burger span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+
+@media (max-width: 860px) {
+  .nav__burger { display: flex; }
+  .nav__menu {
+    position: fixed; inset: var(--nav-h) 0 auto 0;
+    flex-direction: column; align-items: flex-start; gap: 0;
+    padding: var(--s-6) var(--gutter) var(--s-8);
+    background: var(--ground);
+    border-bottom: 1px solid var(--line);
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path .55s var(--ease);
+  }
+  .nav.is-open .nav__menu { clip-path: inset(0 0 0 0); }
+  .nav__list { flex-direction: column; align-items: flex-start; gap: 0; width: 100%; }
+  .nav__list li { width: 100%; border-bottom: 1px solid var(--line); }
+  .nav__link {
+    display: block; padding: var(--s-4) 0;
+    font-family: var(--font-display);
+    font-variation-settings: "opsz" 40, "SOFT" 48, "WONK" 1;
+    font-size: var(--t-3);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   7. The gate - scroll-scrubbed entrance
+   This is the one place the page raises its voice. Two door panels part as
+   you scroll; the treatment room behind them is the reward.
+   -------------------------------------------------------------------------- */
+
+/* 200vh - 100vh of sticky stage = one viewport of scrolling to open the
+   doors, then a short hold on the room before the page carries on. */
+.gate { position: relative; height: 200vh; background: var(--bark); }
+
+.gate__stage {
+  position: sticky; top: 0;
+  height: 100svh;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: var(--bark);
+}
+
+.gate__interior { position: absolute; inset: 0; }
+.gate__interior img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transform: scale(var(--interior-scale, 1.18));
+  will-change: transform;
+}
+.gate__interior::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg,
+    rgba(42, 27, 18, .66) 0%,
+    rgba(42, 27, 18, .46) 42%,
+    rgba(42, 27, 18, .80) 100%);
+}
+
+/* The name is set, not placed as a logo - the type carries the entrance.
+   The drawn mark is already in the nav bar directly above it. */
+.gate__word {
+  position: relative; z-index: 3;
+  text-align: center;
+  padding-inline: var(--gutter);
+  opacity: var(--word-opacity, 0);
+  transform: translateY(var(--word-shift, 26px));
+  will-change: opacity, transform;
+}
+.gate__name {
+  color: #FBF6F1;
+  font-size: var(--t-7);
+  line-height: .95;
+  letter-spacing: -.035em;
+  font-variation-settings: "opsz" 144, "SOFT" 30, "WONK" 1;
+  font-weight: 400;
+  text-shadow: 0 2px 40px rgba(42, 27, 18, .55);
+}
+.gate__tagline {
+  margin: var(--s-5) auto 0;
+  color: #EFE3D8;
+  font-family: var(--font-display);
+  font-variation-settings: "opsz" 20, "SOFT" 70, "WONK" 1;
+  font-style: italic;
+  font-size: var(--t-2);
+  max-width: none;
+  text-shadow: 0 1px 24px rgba(42, 27, 18, .75);
+}
+
+.gate__panel {
+  position: absolute; top: 0; bottom: 0; width: 50.4%;
+  z-index: 4;
+  will-change: transform;
+  box-shadow: 0 0 80px rgba(0, 0, 0, .55);
+}
+.gate__panel img { width: 100%; height: 100%; object-fit: cover; }
+.gate__panel--l { left: 0;  transform: translate3d(calc(var(--gate, 0) * -102%), 0, 0); }
+.gate__panel--r { right: 0; transform: translate3d(calc(var(--gate, 0) * 102%), 0, 0); }
+
+/* Scroll cue - fades out the moment the doors start to move */
+.gate__cue {
+  position: absolute; z-index: 5;
+  left: 50%; bottom: clamp(1.5rem, 4vh, 2.75rem);
+  transform: translateX(-50%);
+  display: grid; justify-items: center; gap: var(--s-3);
+  color: #EFE6DC;
+  font-size: .82rem;
+  letter-spacing: .02em;
+  opacity: var(--cue-opacity, 1);
+  pointer-events: none;
+  text-shadow: 0 1px 16px rgba(42, 27, 18, .8);
+}
+.gate__cue-rail {
+  width: 1px; height: 46px;
+  background: linear-gradient(to bottom, rgba(239, 230, 220, 0), rgba(239, 230, 220, .9));
+  overflow: hidden;
+}
+
+/* The doors stay left-and-right on small screens too - split top-and-bottom
+   they stop reading as a door at all. */
+@media (max-width: 860px) {
+  .gate { height: 170vh; }
+  /* A portrait panel crops each leaf to a sliver, so anchor both to the edge
+     where they meet - the carved medallion then lands on the seam. */
+  .gate__panel--l img { object-position: right center; }
+  .gate__panel--r img { object-position: left center; }
+}
+
+/* --------------------------------------------------------------------------
+   8. Welcome
+   -------------------------------------------------------------------------- */
+
+.welcome { position: relative; }
+
+.welcome__meta {
+  display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5);
+  margin-top: var(--s-6); padding-top: var(--s-5);
+  border-top: 1px solid var(--line);
+  color: var(--ink-soft); font-size: .92rem;
+}
+.welcome__meta b { color: var(--ink); font-weight: 600; }
+
+/* Photographs sit in the grid rather than floating behind the text - the
+   originals were absolutely positioned and landed on top of the copy. */
+.figure { margin: 0; }
+.figure img {
+  width: 100%; height: 100%;
+  border-radius: var(--radius-lg);
+  object-fit: cover;
+  background: var(--ground-sunk);
+}
+.figure--tall img { aspect-ratio: 3 / 4; }
+.figure--portrait img { aspect-ratio: 2 / 3; }
+.figure__caption { margin-top: var(--s-3); color: var(--ink-soft); font-size: .88rem; }
+
+/* Held narrow beside the ledger, full width once the columns stack */
+.figure--brief { max-width: 300px; }
+@media (max-width: 899px) { .figure--brief { max-width: none; } }
+
+/* --------------------------------------------------------------------------
+   9. Philosophy - a triptych of three marks, hairline-separated
+   -------------------------------------------------------------------------- */
+
+.tenets {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 1px solid var(--line);
+}
+@media (min-width: 760px) { .tenets { grid-template-columns: repeat(3, 1fr); } }
+
+.tenet {
+  padding: var(--s-7) var(--s-5) var(--s-6);
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+}
+@media (min-width: 760px) {
+  .tenet { border-bottom: 0; text-align: left; padding-inline: var(--s-6); }
+  .tenet + .tenet { border-left: 1px solid var(--line); }
+  .tenet:first-child { padding-left: 0; }
+  .tenet:last-child { padding-right: 0; }
+}
+.tenet__mark {
+  width: 78px; height: auto; margin-bottom: var(--s-5);
+  transition: transform .6s var(--ease);
+}
+@media (min-width: 760px) { .tenet__mark { margin-inline: 0; } }
+.tenet:hover .tenet__mark { transform: translateY(-6px) scale(1.06); }
+.tenet__name { font-size: var(--t-2); }
+.tenet__note { margin-top: var(--s-2); color: var(--ink-soft); font-size: .95rem; max-width: 30ch; }
+@media (max-width: 759px) { .tenet__mark, .tenet__note { margin-inline: auto; } }
+
+/* --------------------------------------------------------------------------
+   10. Treatments - a ledger, not a card grid. A menu is a list.
+   -------------------------------------------------------------------------- */
+
+.ledger { border-top: 1px solid var(--line-firm); }
+
+.treatment {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-2);
+  padding-block: var(--s-6);
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+@media (min-width: 800px) {
+  .treatment {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 6fr);
+    gap: var(--s-7);
+    align-items: baseline;
+    padding-block: var(--s-7);
+  }
+}
+.treatment__name { font-size: var(--t-3); transition: transform .5s var(--ease); }
+.treatment__body { color: var(--ink); max-width: 54ch; margin: 0; }
+.treatment__aside { display: block; margin-top: var(--s-2); color: var(--ink-soft); font-size: .92rem; }
+@media (min-width: 800px) { .treatment:hover .treatment__name { transform: translateX(8px); } }
+
+.treatment__figure { margin: 0 0 var(--s-4); }
+.treatment__figure img { border-radius: var(--radius-lg); width: 100%; height: auto; }
+@media (min-width: 800px) { .treatment__figure { display: none; } }
+
+/* --------------------------------------------------------------------------
+   11. Rates - set as a treatment menu, not a spreadsheet.
+
+   Leader dots are the oldest device in price-list typography: they carry the
+   eye from a name to its number without needing a box, a rule, or a shadow.
+   Everything here is live text, so it is selectable, searchable, translatable
+   and editable by hand when the prices change.
+   -------------------------------------------------------------------------- */
+
+.menu {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-7);
+  border-top: 1px solid var(--line-firm);
+  padding-top: var(--s-7);
+}
+@media (min-width: 900px) {
+  .menu { grid-template-columns: repeat(3, 1fr); gap: 0; }
+  /* Hairlines between the columns rather than boxes around them */
+  .menu__item + .menu__item { border-left: 1px solid var(--line); }
+  .menu__item { padding-inline: clamp(1.25rem, 3vw, 2.75rem); }
+  .menu__item:first-child { padding-left: 0; }
+  .menu__item:last-child { padding-right: 0; }
+}
+
+/* The descriptions run to different line counts, so the price ladders are
+   pushed to the foot of each column. That keeps 60/90/120 on a shared line
+   across all three, which is the whole point of setting them side by side. */
+.menu__item { min-width: 0; display: flex; flex-direction: column; }
+.menu__item > .menu__desc { flex: 1 1 auto; }
+
+@media (max-width: 899px) {
+  .menu__item + .menu__item { border-top: 1px solid var(--line); padding-top: var(--s-7); }
+  .menu__item > .menu__desc { flex: 0 0 auto; }
+}
+
+.menu__name {
+  font-size: var(--t-3);
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+.menu__desc {
+  margin: var(--s-3) 0 var(--s-5);
+  color: var(--ink-soft);
+  font-size: .95rem;
+  line-height: 1.55;
+  max-width: 30ch;
+}
+
+/* One duration and its price */
+.tier {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-2);
+  padding-block: var(--s-3);
+}
+.tier + .tier { border-top: 1px solid var(--line); }
+
+.tier__dur {
+  flex: none;
+  font-size: .92rem;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The leader itself - a dotted baseline that stretches to fill the gap */
+.tier__lead {
+  flex: 1 1 auto;
+  min-width: var(--s-4);
+  align-self: center;
+  height: 0;
+  border-bottom: 1px dotted var(--line-firm);
+  opacity: .8;
+}
+
+.tier__price {
+  flex: none;
+  font-family: var(--font-display);
+  font-variation-settings: "opsz" 48, "SOFT" 40, "WONK" 0;
+  font-weight: 400;
+  font-size: var(--t-2);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.02em;
+  color: var(--ink-strong);
+  white-space: nowrap;
+}
+.tier__price small {
+  font-family: var(--font-text);
+  font-size: .68em;
+  font-weight: 500;
+  color: var(--ink-soft);
+  margin-right: .35em;
+  letter-spacing: 0;
+}
+
+/* Kop and Kerik runs on a single 30-minute session, so it sits across the
+   foot of the menu instead of being forced into a column of its own. */
+.menu__extra {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-3) var(--s-6);
+  align-items: baseline;
+  margin-top: var(--s-7);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--line-firm);
+}
+@media (min-width: 760px) {
+  .menu__extra { grid-template-columns: minmax(0, auto) minmax(0, 1fr) minmax(0, 16rem); }
+}
+.menu__extra .menu__desc { margin: 0; max-width: 46ch; }
+.menu__extra .tier { padding-block: 0; }
+
+.menu__foot {
+  margin-top: var(--s-6);
+  color: var(--ink-soft);
+  font-size: .9rem;
+}
+/* --------------------------------------------------------------------------
+   12. Offer - the one saturated colour break on the page
+   -------------------------------------------------------------------------- */
+
+.offer { background: var(--pandan); color: #EFE9DF; overflow: hidden; }
+.offer h2, .offer .d-section { color: #FBF6F1; }
+.offer .prose { color: rgba(239, 233, 223, .82); }
+.offer .btn { --btn-bg: #EFE9DF; --btn-fg: var(--pandan); }
+.offer .btn:hover { background: #fff; border-color: #fff; color: var(--pandan); }
+
+.offer__grid {
+  display: grid; grid-template-columns: 1fr; gap: var(--s-7); align-items: center;
+}
+@media (min-width: 900px) { .offer__grid { grid-template-columns: 5fr 7fr; gap: var(--s-9); } }
+.offer__art { border-radius: var(--radius-lg); overflow: hidden; }
+.offer__art img { width: 100%; height: auto; }
+
+/* --------------------------------------------------------------------------
+   13. The room - user-driven expanding panels
+   -------------------------------------------------------------------------- */
+
+.room { display: flex; gap: var(--s-3); height: clamp(360px, 58vh, 540px); }
+.room__input { position: absolute; opacity: 0; pointer-events: none; }
+
+.room__panel {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  transition: flex-grow .8s var(--ease);
+}
+.room__panel::after {
+  content: '';
+  position: absolute; inset: 0;
+  /* These photographs are bright and warm, so the scrim has to carry the
+     white caption on its own. */
+  background: linear-gradient(180deg,
+    rgba(42, 27, 18, 0) 30%,
+    rgba(42, 27, 18, .55) 68%,
+    rgba(42, 27, 18, .94) 100%);
+}
+.room__caption {
+  position: relative; z-index: 2;
+  padding: var(--s-4);
+  color: #FBF6F1;
+  width: 100%;
+}
+.room__title {
+  display: block;
+  color: #FBF6F1;
+  font-family: var(--font-display);
+  font-variation-settings: "opsz" 60, "SOFT" 48, "WONK" 1;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  /* Small enough to sit inside a collapsed panel; grows when opened */
+  font-size: var(--t-1);
+  overflow-wrap: break-word;
+  transition: font-size .6s var(--ease);
+}
+.room__note {
+  display: block;
+  margin: var(--s-2) 0 0;
+  color: rgba(251, 246, 241, .84);
+  font-size: .95rem;
+  max-width: 34ch;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .5s var(--ease) .15s, transform .5s var(--ease) .15s;
+}
+
+.room__input:checked + .room__panel { flex-grow: 4.6; }
+.room__input:checked + .room__panel .room__caption { padding: var(--s-5); }
+.room__input:checked + .room__panel .room__title { font-size: var(--t-3); }
+.room__input:checked + .room__panel .room__note { opacity: 1; transform: translateY(0); }
+.room__input:focus-visible + .room__panel { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.room__panel[data-img="1"] { background-image: url('/assets/IMG (1).png'); }
+.room__panel[data-img="2"] { background-image: url('/assets/IMG (2).png'); }
+.room__panel[data-img="3"] { background-image: url('/assets/IMG (3).png'); }
+.room__panel[data-img="4"] { background-image: url('/assets/IMG (4).png'); }
+
+@media (max-width: 860px) {
+  .room { flex-direction: column; height: auto; }
+  .room__panel { min-height: 190px; }
+  .room__input:checked + .room__panel { flex-grow: 1; }
+  .room__note { opacity: 1; transform: none; }
+}
+
+/* --------------------------------------------------------------------------
+   14. Visit
+   -------------------------------------------------------------------------- */
+
+.visit { position: relative; }
+
+.visit__grid { display: grid; grid-template-columns: 1fr; gap: var(--s-7); align-items: start; }
+@media (min-width: 900px) {
+  .visit__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 4fr) minmax(0, 4fr); gap: var(--s-8); }
+}
+
+.hours { list-style: none; margin: var(--s-6) 0 0; padding: 0; max-width: 380px; }
+.hours li {
+  display: flex; justify-content: space-between; gap: var(--s-4);
+  padding-block: var(--s-3);
+  border-bottom: 1px solid var(--line);
+}
+.hours dt, .hours span:first-child { color: var(--ink-soft); }
+.hours b { font-weight: 600; font-variant-numeric: tabular-nums; }
+
+.address { font-size: var(--t-1); line-height: 1.5; max-width: 30ch; }
+
+/* --------------------------------------------------------------------------
+   15. Reviews marquee
+   -------------------------------------------------------------------------- */
+
+.marquee { position: relative; overflow: hidden; }
+.marquee::before, .marquee::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: clamp(40px, 8vw, 120px); z-index: 2;
+  pointer-events: none;
+}
+.marquee::before { left: 0;  background: linear-gradient(to right, var(--ground), transparent); }
+.marquee::after  { right: 0; background: linear-gradient(to left,  var(--ground), transparent); }
+
+.marquee__track { display: flex; width: max-content; will-change: transform; }
+.marquee__track > * { flex: none; }
+.marquee__track img {
+  width: clamp(180px, 20vw, 230px); height: auto;
+  margin-inline: var(--s-3);
+  border-radius: var(--radius-lg);
+}
+.marquee__row + .marquee__row { margin-top: var(--s-4); }
+.marquee__row--a .marquee__track { animation: drift 62s linear infinite; }
+.marquee__row--b .marquee__track { animation: drift 78s linear infinite reverse; }
+.marquee:hover .marquee__track { animation-play-state: paused; }
+
+@keyframes drift {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+/* --------------------------------------------------------------------------
+   16. Footer
+   -------------------------------------------------------------------------- */
+
+.footer { background: var(--bark); color: #E8DFD6; padding-block: var(--s-9) var(--s-6); }
+.footer h2, .footer h3 { color: #FBF6F1; }
+.footer a { color: #E8DFD6; text-decoration: none; }
+
+.footer__grid {
+  display: grid; grid-template-columns: 1fr; gap: var(--s-7);
+}
+@media (min-width: 760px) { .footer__grid { grid-template-columns: 1.4fr 1fr 1fr; gap: var(--s-8); } }
+
+.footer__label {
+  font-family: var(--font-text);
+  font-size: .82rem; font-weight: 600;
+  color: #A8968A;
+  margin: 0 0 var(--s-4);
+}
+.footer__list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-3); }
+
+.social { display: inline-flex; align-items: center; gap: var(--s-3); }
+.social img { width: 22px; height: 22px; object-fit: contain; }
+
+.footer__bottom {
+  margin-top: var(--s-8); padding-top: var(--s-5);
+  border-top: 1px solid rgba(232, 223, 214, .14);
+  display: flex; flex-wrap: wrap; gap: var(--s-4); justify-content: space-between;
+  color: #A8968A; font-size: .86rem;
+}
+
+.footer__call { margin-top: var(--s-5); }
+.footer__call .btn { --btn-bg: var(--accent); --btn-fg: var(--bark); }
+.footer__call .btn:hover { background: #fff; border-color: #fff; color: var(--bark); }
+
+/* --------------------------------------------------------------------------
+   17. Reveal - one restrained device, used only on section headings
+   -------------------------------------------------------------------------- */
+
+/* A mask reveal, echoing the doors: the line slides up from behind its own
+   edge. The mask sits on the wrapper and the motion on the inner span -
+   clipping the observed element itself to zero area would blind
+   IntersectionObserver.
+
+   Hidden here and revealed by script. Readers without JavaScript get the
+   <noscript> override in app/layout.tsx. This is deliberately NOT gated on a
+   class added at runtime: doing that mutated <html> before React hydrated,
+   which tripped a hydration mismatch. */
+.reveal {
+  overflow: hidden;
+  padding-bottom: .14em;
+  margin-bottom: -.14em;
+}
+.reveal > span {
+  display: block;
+  transform: translateY(106%);
+  transition: transform 1.05s var(--ease);
+}
+.reveal.is-in > span { transform: translateY(0); }
+
+/* --------------------------------------------------------------------------
+   18. Reduced motion
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+
+  /* The doors are already open; no scrubbing, no surprise */
+  .gate { height: 100svh; }
+  .gate__panel { display: none; }
+  .gate__word { opacity: 1; transform: none; }
+  .gate__cue { display: none; }
+  .gate__interior img { transform: none; }
+
+  .reveal { overflow: visible; padding-bottom: 0; margin-bottom: 0; }
+  .reveal > span { transform: none; }
+  .marquee__track { animation: none !important; }
+}
